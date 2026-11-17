@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "t20-agent"
+version = "0.1.0"
+description = "Agente especialista em Tormenta 20 com LangChain, LangGraph e Qdrant"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain>=0.3",
+    "langchain-openai>=0.3",
+    "qdrant-client>=1.12",
+    "docling>=2.0",
+    "pydantic>=2.8",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.11",
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src", "tests"]
+check_untyped_defs = true
+warn_unused_ignores = true
